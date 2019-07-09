@@ -4,7 +4,7 @@ namespace App\Sms;
 
 use PHPUnit\Framework\TestCase;
 
-class SmsTest extends TestCase
+class MessageCombonationFinderTest extends TestCase
 {
     public function test_insertion_sort()
     {
@@ -24,7 +24,7 @@ class SmsTest extends TestCase
 
         $messageCombinationFinder = new MessageCombinationFinder();
 
-        $sortedArray = $messageCombinationFinder->insertion_Sort($smsArray);
+        $sortedArray = $messageCombinationFinder->insertionSort($smsArray);
 
         $this->assertEquals($sortedArray, $sortedArray);
     }

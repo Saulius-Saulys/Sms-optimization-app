@@ -10,7 +10,7 @@ class Sms
 
     private $rate;
 
-    function __construct($price, $income)
+    function __construct(float $price, float $income)
     {
         $this->price = $price;
         $this->income = $income;

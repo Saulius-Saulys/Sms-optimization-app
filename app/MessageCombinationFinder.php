@@ -5,7 +5,7 @@ namespace App\Sms;
 
 class MessageCombinationFinder
 {
-    function fillDataFromJsonToObjectArray($json): array
+    function fillDataFromJsonToObjectArray(array $json): array
     {
         $smsList = array();
         $i = 0;
@@ -16,13 +16,13 @@ class MessageCombinationFinder
         return $smsList;
     }
 
-    function readFromJsonFile($argv): array
+    function readFromJsonFile(array $argv): array
     {
         $jsonData = file_get_contents($argv[1]);
         return json_decode($jsonData, true);
     }
 
-    function insertion_Sort($smsList): array
+    function insertionSort(array $smsList): array
     {
         for ($i = 0; $i < count($smsList); $i++) {
             $val = $smsList[$i];
@@ -36,8 +36,13 @@ class MessageCombinationFinder
         return $smsList;
     }
 
-    function findArrayOfValuesThatAreClosestToRequired($index, $smsList, $required, $sum, $values): array
-    {
+    function findArrayOfValuesThatAreClosestToRequired(
+        int $index,
+        array $smsList,
+        float $required,
+        float $sum,
+        array $values
+    ): array {
         if (isset($smsList[$index])) {
 
             while ($sum + $smsList[$index]->getPrice() <= $required) {
@@ -54,7 +59,7 @@ class MessageCombinationFinder
         return $values;
     }
 
-    function findCheapestPrice($smsList): float
+    function findCheapestPrice(array $smsList): float
     {
         $min = INF;
         foreach ($smsList as $object) {
@@ -66,16 +71,4 @@ class MessageCombinationFinder
         return $min;
     }
 
-    function printResult($test, $smsList): void
-    {
-        echo "[";
-        foreach ($test as $value) {
-            if ($value != $this->findCheapestPrice($smsList)) {
-                echo $value . ", ";
-            } else {
-                echo $value;
-            }
-        }
-        echo "]\n";
-    }
 }
